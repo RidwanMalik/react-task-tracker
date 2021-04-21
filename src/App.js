@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
+import Footer from './components/Footer'
+import About from './components/About'
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -72,14 +75,22 @@ function App() {
   }
 
   return (
+    <Router>
     <div className='container' >
       <Header title='Task Tracker' onShow={() => setShowAddTask(!showAddTask)} showAddTask={showAddTask} />
+      <Route path='/' exact>
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ?
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
         : <p className='text-center text-muted'>No Task To Do</p>
       }
+      </Route>
+      <Route path='/about'>
+        <About />
+      </Route>
+      <Footer />
     </div>
+    </Router>
   );
 }
 

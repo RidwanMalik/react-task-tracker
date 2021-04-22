@@ -23,8 +23,7 @@ function App() {
   const fetchTasks = async () => {
     const response = await fetch("http://task.obhilash.com/api/v1/tasks")
     const data = await response.json()
-
-    return data
+    return data.data
   }
 
   // Fetch Task
@@ -32,7 +31,7 @@ function App() {
     const response = await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`)
     const data = await response.json()
 
-    return data
+    return data.data
   }
 
   // Add Task
@@ -45,7 +44,7 @@ function App() {
       body: JSON.stringify(task)
     })
     const data = await response.json()
-    setTasks([...tasks, data])
+    setTasks([...tasks, data.data])
   }
 
   // Delete Task

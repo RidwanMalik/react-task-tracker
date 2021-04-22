@@ -21,7 +21,7 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const response = await fetch("http://localhost:5000/tasks")
+    const response = await fetch("http://task.obhilash.com/api/v1/tasks")
     const data = await response.json()
 
     return data
@@ -29,7 +29,7 @@ function App() {
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const response = await fetch(`http://localhost:5000/tasks/${id}`)
+    const response = await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`)
     const data = await response.json()
 
     return data
@@ -37,7 +37,7 @@ function App() {
 
   // Add Task
   const addTask = async (task) => {
-    const response = await fetch("http://localhost:5000/tasks", {
+    const response = await fetch("http://task.obhilash.com/api/v1/tasks", {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -50,7 +50,7 @@ function App() {
 
   // Delete Task
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, { method: 'DELETE' })
+    await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`, { method: 'DELETE' })
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
@@ -60,7 +60,7 @@ function App() {
     const updatedTask = {
       ...taskToToggle, reminder: !taskToToggle.reminder
     }
-    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const response = await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'

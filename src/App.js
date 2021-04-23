@@ -36,6 +36,7 @@ function App() {
 
   // Add Task
   const addTask = async (task) => {
+    setTasks([...tasks, task])
     const response = await fetch("https://task.obhilash.com/api/v1/tasks", {
       method: 'POST',
       headers: {
@@ -49,12 +50,16 @@ function App() {
 
   // Delete Task
   const deleteTask = async (id) => {
-    await fetch(`https://task.obhilash.com/api/v1/tasks/${id}`, { method: 'DELETE' })
     setTasks(tasks.filter((task) => task.id !== id))
+    await fetch(`https://task.obhilash.com/api/v1/tasks/${id}`, { method: 'DELETE' })
   }
 
   // Toggle Reminder
   const toggleReminder = async (id) => {
+    setTasks(tasks.map((task) => task.id === id ?
+      { ...task, reminder: !task.reminder }
+      : task
+    ))
     const taskToToggle = await fetchTask(id)
     const updatedTask = {
       ...taskToToggle, reminder: !taskToToggle.reminder

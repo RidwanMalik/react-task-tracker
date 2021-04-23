@@ -21,14 +21,14 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const response = await fetch("http://task.obhilash.com/api/v1/tasks")
+    const response = await fetch("https://task.obhilash.com/api/v1/tasks")
     const data = await response.json()
     return data.data
   }
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const response = await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`)
+    const response = await fetch(`https://task.obhilash.com/api/v1/tasks/${id}`)
     const data = await response.json()
 
     return data.data
@@ -36,7 +36,7 @@ function App() {
 
   // Add Task
   const addTask = async (task) => {
-    const response = await fetch("http://task.obhilash.com/api/v1/tasks", {
+    const response = await fetch("https://task.obhilash.com/api/v1/tasks", {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -49,7 +49,7 @@ function App() {
 
   // Delete Task
   const deleteTask = async (id) => {
-    await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`, { method: 'DELETE' })
+    await fetch(`https://task.obhilash.com/api/v1/tasks/${id}`, { method: 'DELETE' })
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
@@ -59,7 +59,7 @@ function App() {
     const updatedTask = {
       ...taskToToggle, reminder: !taskToToggle.reminder
     }
-    const response = await fetch(`http://task.obhilash.com/api/v1/tasks/${id}`, {
+    const response = await fetch(`https://task.obhilash.com/api/v1/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
